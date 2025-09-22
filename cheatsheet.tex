@@ -1,0 +1,149 @@
+\documentclass[10pt,a4paper,landscape]{article}
+
+% Pakete für kompaktes Layout und deutsche Umlaute
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[margin=1cm]{geometry}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+% Kompakte Darstellung
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5ex}
+\setlength{\columnsep}{1cm}
+
+% Überschriften anpassen
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{1ex}{0.5ex}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{0.5ex}{0.25ex}
+
+% Kopf- und Fußzeile entfernen
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Physik Spickzettel - Beschleunigung}
+\end{center}
+
+\begin{multicols}{2}
+
+\section{Grundlagen der Beschleunigung}
+
+Die Beschleunigung ist die Änderung der Geschwindigkeit pro Zeiteinheit.
+
+\subsection{Beschleunigungsformeln}
+
+\begin{center}
+\begin{tabular}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+ & \textbf{t} & \textbf{s} & \textbf{v} & \textbf{a} \\
+\hline
+\textbf{t} & - & $s = \frac{v^2}{2a}$ & $v = \sqrt{2as}$ & $a = \frac{v^2}{2s}$ \\
+\hline
+\textbf{s} & $t = \frac{v}{a}$ & - & $v = at$ & $a = \frac{v}{t}$ \\
+\hline
+\textbf{v} & $t = \sqrt{\frac{2s}{a}}$ & $s = \frac{at^2}{2}$ & - & $a = \frac{2s}{t^2}$ \\
+\hline
+\textbf{a} & $t = \frac{2s}{v}$ & $s = \frac{vt}{2}$ & $v = \frac{2s}{t}$ & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Kraft}
+Die Kraft ist das Produkt aus Masse und Beschleunigung:
+\begin{equation}
+F = m \cdot a
+\end{equation}
+
+\subsection{Spezielle Beschleunigungen}
+
+\textbf{Kreisbewegung:}
+\begin{align}
+a_z &= \frac{v^2}{r} = \omega^2 r \\
+a_t &= \frac{dv}{dt} = r \alpha
+\end{align}
+
+\textbf{Harmonische Schwingung:}
+\begin{align}
+a &= -\omega^2 x \\
+a_{max} &= \omega^2 A
+\end{align}
+
+\section{Energie}
+\begin{align}
+E_{kin} &= \frac{1}{2}mv^2 \\
+E_{pot} &= mgh \\
+E_{el} &= \frac{1}{2}kx^2 \\
+E_{Feder} &= \frac{1}{2}kx^2 \\
+E_{reibung} &= F_{reib} \cdot s \\
+\end{align}
+
+
+
+\section{Wichtige Konstanten}
+
+\begin{itemize}
+    \item Erdbeschleunigung: $g = 9{,}81 \, \frac{m}{s^2}$
+    \item Fallbeschleunigung Mond: $g_{Mond} = 1{,}62 \, \frac{m}{s^2}$
+\end{itemize}
+
+\section{Einheiten und Umrechnungen}
+
+\begin{itemize}
+    \item $1 \, \frac{m}{s^2} = 100 \, \frac{cm}{s^2}$
+    \item $1 \, g = 9{,}81 \, \frac{m}{s^2}$ (Erdbeschleunigung als Einheit)
+\end{itemize}
+
+\columnbreak
+
+\section{Kinematische Gleichungen}
+
+Für konstante Beschleunigung gelten die folgenden Zusammenhänge:
+
+\begin{align}
+v(t) &= v_0 + at \\
+s(t) &= s_0 + v_0 t + \frac{1}{2}at^2 \\
+v^2 &= v_0^2 + 2a(s - s_0) \\
+\bar{v} &= \frac{s - s_0}{t} = \frac{v_0 + v}{2}
+\end{align}
+
+\section{Freier Fall}
+
+Beim freien Fall wirkt nur die Gravitationskraft:
+
+\begin{align}
+v(t) &= gt \\
+h(t) &= \frac{1}{2}gt^2 \\
+v^2 &= 2gh \\
+t_{Fall} &= \sqrt{\frac{2h}{g}}
+\end{align}
+
+\section{Schiefer Wurf}
+
+\textbf{Horizontal:} $a_x = 0$
+\begin{align}
+v_x &= v_0 \cos(\alpha) \\
+x(t) &= v_0 \cos(\alpha) \cdot t
+\end{align}
+
+\textbf{Vertikal:} $a_y = -g$
+\begin{align}
+v_y(t) &= v_0 \sin(\alpha) - gt \\
+y(t) &= v_0 \sin(\alpha) \cdot t - \frac{1}{2}gt^2
+\end{align}
+
+\textbf{Wurfweite:} $R = \frac{v_0^2 \sin(2\alpha)}{g}$
+
+\textbf{Maximale Höhe:} $h_{max} = \frac{v_0^2 \sin^2(\alpha)}{2g}$
+
+\end{multicols}
+
+\end{document}

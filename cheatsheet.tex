@@ -9,8 +9,8 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{array}
-\usepackage{booktabs}
 \usepackage{siunitx}
+\usepackage{makecell}
 
 % Kompakte Darstellung
 \setlength{\parindent}{0pt}
@@ -27,123 +27,204 @@
 % Kopf- und Fußzeile entfernen
 \pagestyle{empty}
 
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
 \begin{document}
 
 \begin{center}
-    \Large\textbf{Physik Spickzettel - Beschleunigung}
+  \Large\textbf{Grundlagen der Elektro- und Digitaltechnik}
 \end{center}
 
-\begin{multicols}{2}
+\begin{multicols*}{3}
+  \setlength{\premulticols}{1pt}
+  \setlength{\postmulticols}{1pt}
+  \setlength{\multicolsep}{1pt}
+  \setlength{\columnsep}{2pt}
 
-\section{Grundlagen der Beschleunigung}
+  \section*{Physikalische Grundlagen}
+  \subsection*{Wichtige Größen}
+  \begin{itemize}
+      \item Spannung (U) [Volt, V] = $\frac{J}{C}$
+      \item Strom (I) [Ampere, A] = $\frac{C}{s}$
+      \item Widerstand (R) [Ohm, $\Omega$] = $\frac{V}{A}$
+      \item Leistung (P) [Watt, W] = $V \cdot A$
+      \item Kapazität (C) [Farad, F] = $\frac{A \cdot s}{V}$
+      \item Induktivität (L) [Henry, H] = $\frac{V \cdot s}{A}$
+      \item Ladung (q) [Coulomb, C] = $A \cdot s$
+      \item Kraft (F) [Newton, N] = $kg \cdot \frac{m}{s^2}$
+      \item Energie = Arbeit (E = W) [Joule, J] = $N \cdot m$
+      \item Frequenz (f) [Hertz, Hz] = $\frac{1}{s}$
+      \item Erdbeschleunigung (g) = \SI{9.81}{\frac{m}{s^2}}
+      \item Lichtgeschwindigkeit (c) = \SI{3e8}{\frac{m}{s}}
+      \item Elektrische Feldkonstante ($\varepsilon_0$) = \SI{8.854e-12}{\frac{C^2}{N m^2}}
+      \item Gravitationskonstante ($\gamma$) = \SI{6.67430e-11}{\frac{m^3}{kg s^2}}
+  \end{itemize}
 
-Die Beschleunigung ist die Änderung der Geschwindigkeit pro Zeiteinheit.
+  \subsection*{Beschleunigung}
+  
+  \begin{center}
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+     & \textbf{t} & \textbf{s} & \textbf{v} & \textbf{a} \\
+    \hline
+    \textbf{t} & - & $s = \frac{v^2}{2a}$ & $v = \sqrt{2as}$ & $a = \frac{v^2}{2s}$ \\
+    \hline
+    \textbf{s} & $t = \frac{v}{a}$ & - & $v = at$ & $a = \frac{v}{t}$ \\
+    \hline
+    \textbf{v} & $t = \sqrt{\frac{2s}{a}}$ & $s = \frac{at^2}{2}$ & - & $a = \frac{2s}{t^2}$ \\
+    \hline
+    \textbf{a} & $t = \frac{2s}{v}$ & $s = \frac{vt}{2}$ & $v = \frac{2s}{t}$ & - \\
+    \hline
+    \end{tabular}
+  \end{center}
 
-\subsection{Beschleunigungsformeln}
+  \subsection*{Wurf mit Vektoren}
+  \begin{itemize}
+    \item $\vec{v}(t) = \begin{pmatrix} v_x \\ v_y \\ v_z - g \cdot t \end{pmatrix}$
+    \item $\vec{s}(t) = \begin{pmatrix} s_x + v_x \cdot t \\ s_y + v_y \cdot t \\ s_z + v_z \cdot t - \frac{1}{2} g \cdot t^2 \end{pmatrix}$
+  \end{itemize}
 
-\begin{center}
-\begin{tabular}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
-\hline
- & \textbf{t} & \textbf{s} & \textbf{v} & \textbf{a} \\
-\hline
-\textbf{t} & - & $s = \frac{v^2}{2a}$ & $v = \sqrt{2as}$ & $a = \frac{v^2}{2s}$ \\
-\hline
-\textbf{s} & $t = \frac{v}{a}$ & - & $v = at$ & $a = \frac{v}{t}$ \\
-\hline
-\textbf{v} & $t = \sqrt{\frac{2s}{a}}$ & $s = \frac{at^2}{2}$ & - & $a = \frac{2s}{t^2}$ \\
-\hline
-\textbf{a} & $t = \frac{2s}{v}$ & $s = \frac{vt}{2}$ & $v = \frac{2s}{t}$ & - \\
-\hline
-\end{tabular}
-\end{center}
+  \columnbreak
 
-\subsection{Kraft}
-Die Kraft ist das Produkt aus Masse und Beschleunigung:
-\begin{equation}
-F = m \cdot a
-\end{equation}
+  \subsection*{Kräfte}
+  \subsubsection*{Gewichtkraft}
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      \textbf{Vektor} & \textbf{Zahlwert} \\
+      \hline
+      $\vec{F_G} = \begin{pmatrix} 0 \\ 0 \\ -m \cdot g \end{pmatrix}$ & 
+      $F_G = m \cdot g$ \\
+      \hline
+    \end{tabular} \\[1em]
+    m: Masse [kg], h: Höhe [m]
+  \end{center}
 
-\subsection{Spezielle Beschleunigungen}
+  \subsubsection*{Federkraft}
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      \textbf{Vektor} & \textbf{Zahlwert} \\
+      \hline
+      $\vec{F_s} = -k \cdot (|\vec{x}| - L) \cdot \frac{\vec{x}}{|\vec{x}|}$ & 
+      $F_s = -k \cdot (x - L)$ \\
+      \hline
+    \end{tabular} \\[1em]
+    $k$: Federkonstante \(\left[\frac{N}{m}\right]\), L: Ruhelänge [m], \\ x: Auslenkung [m]
+  \end{center}
 
-\textbf{Kreisbewegung:}
-\begin{align}
-a_z &= \frac{v^2}{r} = \omega^2 r \\
-a_t &= \frac{dv}{dt} = r \alpha
-\end{align}
+  \subsubsection*{Gravitationskraft zwischen Massen}
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      \textbf{Vektor} & \textbf{Zahlwert} \\
+      \hline
+      $\vec{F_{12}} = -\gamma \frac{m_1 m_2}{|\vec{r}_1 - \vec{r}_2|^2} \frac{\vec{r}_1 - \vec{r}_2}{|\vec{r}_1 - \vec{r}_2|}$ & 
+      $F_{12} = - \gamma \frac{m_1 m_2}{r^2}$ \\
+      \hline
+    \end{tabular} \\[1em]
+    $m_1, m_2$: Massen [kg], \\
+    $r_1, r_2$: Orte der Massen [m], r: Abstand der Massen [m] \\
+    $\vec{n}_{12} = \frac{\vec{r}_1 - \vec{r}_2}{|\vec{r}_1 - \vec{r}_2|}$: Einheitsvektor von Masse 2 zu Masse 1
+  \end{center}
+    
+  \subsubsection*{Kraft zwischen Ladungen (Coulomb-Kraft)}
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      \textbf{Vektor} & \textbf{Zahlwert} \\
+      \hline
+      $\vec{F_{12}} = \frac{1}{4 \pi \varepsilon_0} \frac{q_1 q_2}{|\vec{r}_1 - \vec{r}_2|^2} \frac{\vec{r}_1 - \vec{r}_2}{|\vec{r}_1 - \vec{r}_2|}$ & 
+      $F_{12} = \frac{1}{4 \pi \varepsilon_0} \frac{q_1 q_2}{r^2}$ \\
+      \hline
+    \end{tabular} \\[1em]
+    $q_1, q_2$: Ladungen [C], \\
+    $r_1, r_2$: Orte der Ladungen [m] \\
+    $\vec{n}_{12} = \frac{\vec{r}_1 - \vec{r}_2}{|\vec{r}_1 - \vec{r}_2|}$: Einheitsvec von Ladung 2 zu Ladung 1
+  \end{center}
 
-\textbf{Harmonische Schwingung:}
-\begin{align}
-a &= -\omega^2 x \\
-a_{max} &= \omega^2 A
-\end{align}
+  \subsection*{Energie}
+  \begin{itemize}
+    \item Potentielle Energie: $E_{pot} = m \cdot g \cdot h$
+    \item Kinetische Energie: $E_{kin} = \frac{1}{2} m \cdot v^2$
+    \item Federenergie: $E_s = \frac{1}{2} k (x - L)^2$
+    \item Potentielle Energie einer Ladung bei einer Spannung: $E_{pot.el} = Uq$
+    \item Potential: $\varphi = \frac{\text{Potentielle Energie der Menge X}}{\text{Menge X}}$
+  \end{itemize}
+  
+  \columnbreak
 
-\section{Energie}
-\begin{align}
-E_{kin} &= \frac{1}{2}mv^2 \\
-E_{pot} &= mgh \\
-E_{el} &= \frac{1}{2}kx^2 \\
-E_{Feder} &= \frac{1}{2}kx^2 \\
-E_{reibung} &= F_{reib} \cdot s \\
-\end{align}
+  \section*{Veränderungsraten}
+  \begin{itemize}
+    \item $v(t) = \frac{ds(t)}{dt}$
+    \item $a(t) = \frac{dv(t)}{dt} = \frac{d^2 s(t)}{dt^2}$
+    \item $s(t) = \int v(t) dt$
+    \item $v(t) = \int a(t) dt$
+    \item $I(t) = \frac{dq(t)}{dt}$
+  \end{itemize}
 
+  \section*{Elektrische Grundlagen}
 
+  \subsection*{Ohmsches Gesetz}
+  \begin{itemize}
+    \item $U = U_R = R \cdot I$
+    \item $R = \rho \cdot \frac{l}{A}$ 
+      \begin{itemize}
+        \item $\rho$: spezifischer Widerstand \([\Omega m]\)
+        \item $l$: Länge des Leiters [m]
+        \item $A$: Querschnittsfläche des Leiters \([m^2]\)
+      \end{itemize}
+    \item $P = U \cdot I = R \cdot I^2 = \frac{U^2}{R}$
+  \end{itemize}
 
-\section{Wichtige Konstanten}
+  \subsection*{Knotenregel (1. Kirchhoffsche Regel)}
+  Ein Knoten ist ein Verbindungspunkt mehrerer Leiter.
+  \begin{equation*}
+    \sum I_{ein} = \sum I_{aus}
+  \end{equation*}
+  
+  \subsection*{Maschenregel (2. Kirchhoffsche Regel)}
+  Eine Masche ist ein geschlossener Weg in einem Netzwerk.
+  \begin{equation*}
+    \sum U_{Quelle} = \sum U_{Verbraucher}
+  \end{equation*}
+  
+  \subsection*{Reihenschaltung}
+  \begin{itemize}
+    \item $R_{gesamt} = R_1 + R_2 + \ldots + R_n$
+    \item $I_{gesamt} = I_1 = I_2 = \ldots = I_n$
+    \item $U_{gesamt} = U_1 + U_2 + \ldots + U_n$
+  \end{itemize}
 
-\begin{itemize}
-    \item Erdbeschleunigung: $g = 9{,}81 \, \frac{m}{s^2}$
-    \item Fallbeschleunigung Mond: $g_{Mond} = 1{,}62 \, \frac{m}{s^2}$
-\end{itemize}
+  \subsection*{Parallelschaltung}
+  \begin{itemize}
+    \item $\frac{1}{R_{gesamt}} = \frac{1}{R_1} + \frac{1}{R_2} + \ldots + \frac{1}{R_n}$
+    \item $I_{gesamt} = I_1 + I_2 + \ldots + I_n$
+    \item $U_{gesamt} = U_1 = U_2 = \ldots = U_n$
+  \end{itemize}
 
-\section{Einheiten und Umrechnungen}
-
-\begin{itemize}
-    \item $1 \, \frac{m}{s^2} = 100 \, \frac{cm}{s^2}$
-    \item $1 \, g = 9{,}81 \, \frac{m}{s^2}$ (Erdbeschleunigung als Einheit)
-\end{itemize}
-
-\columnbreak
-
-\section{Kinematische Gleichungen}
-
-Für konstante Beschleunigung gelten die folgenden Zusammenhänge:
-
-\begin{align}
-v(t) &= v_0 + at \\
-s(t) &= s_0 + v_0 t + \frac{1}{2}at^2 \\
-v^2 &= v_0^2 + 2a(s - s_0) \\
-\bar{v} &= \frac{s - s_0}{t} = \frac{v_0 + v}{2}
-\end{align}
-
-\section{Freier Fall}
-
-Beim freien Fall wirkt nur die Gravitationskraft:
-
-\begin{align}
-v(t) &= gt \\
-h(t) &= \frac{1}{2}gt^2 \\
-v^2 &= 2gh \\
-t_{Fall} &= \sqrt{\frac{2h}{g}}
-\end{align}
-
-\section{Schiefer Wurf}
-
-\textbf{Horizontal:} $a_x = 0$
-\begin{align}
-v_x &= v_0 \cos(\alpha) \\
-x(t) &= v_0 \cos(\alpha) \cdot t
-\end{align}
-
-\textbf{Vertikal:} $a_y = -g$
-\begin{align}
-v_y(t) &= v_0 \sin(\alpha) - gt \\
-y(t) &= v_0 \sin(\alpha) \cdot t - \frac{1}{2}gt^2
-\end{align}
-
-\textbf{Wurfweite:} $R = \frac{v_0^2 \sin(2\alpha)}{g}$
-
-\textbf{Maximale Höhe:} $h_{max} = \frac{v_0^2 \sin^2(\alpha)}{2g}$
-
-\end{multicols}
+  \subsection*{Lastwiederstand}
+  \begin{equation*}
+    P_{last} = U_0^2 \cdot \frac{R_{last}}{(R_i + R_{last})^2}
+  \end{equation*}
+\end{multicols*}
 
 \end{document}

@@ -11,6 +11,7 @@
 \usepackage{array}
 \usepackage{siunitx}
 \usepackage{makecell}
+\usepackage{graphicx}
 
 % Kompakte Darstellung
 \setlength{\parindent}{0pt}
@@ -225,6 +226,196 @@
   \begin{equation*}
     P_{last} = U_0^2 \cdot \frac{R_{last}}{(R_i + R_{last})^2}
   \end{equation*}
-\end{multicols*}
 
+  \columnbreak
+
+  \subsection*{Kondensator}
+  \begin{itemize}
+    \item $C = \frac{q}{U}$ (Kapazität) [F]
+    \item $E_{el} = \frac{1}{2} C U^2$
+    \item $I(t) = \frac{U_0 - U_C(t)}{R} = \frac{U_0}{R} e^{-\frac{t}{\tau}}$
+    \item $U_C(t) = U_0 \left(1 - e^{-\frac{t}{\tau}} \right)$
+    \item $X_C = \frac{1}{\omega C}$ (Kapazitiver Blindwiderstand) [$\Omega$]
+      \begin{itemize}
+        \item Kann nicht direkt mit R addiert werden
+      \end{itemize}
+    \item $\tau = R \cdot C$ (Zeitkonstante) [s]
+    \item $\omega = 2 \pi f$ (Kreisfrequenz) [Hz]
+    \item $f_g = \frac{1}{2 \pi \tau}$ (Grenzfrequenz) [Hz]
+  \end{itemize}
+
+  \subsection*{Induktivität}
+  \begin{itemize}
+    \item $U_L(t) = L \frac{dI(t)}{dt} = U_0 e^{-\frac{t}{\tau}}$
+    \item $E_{mag} = \frac{1}{2} L I^2$
+    \item $I(t) = I_0 \left(1 - e^{-\frac{t}{\tau}} \right)$
+    \item $X_L = \omega L$ (Induktiver Blindwiderstand) [$\Omega$]
+      \begin{itemize}
+        \item Kann nicht direkt mit R addiert werden
+      \end{itemize}
+    \item $\tau = \frac{L}{R}$ (Zeitkonstante) [s]
+    \item $\omega = 2 \pi f$ (Kreisfrequenz) [Hz]
+    \item $f_g = \frac{1}{2 \pi \tau}$ (Grenzfrequenz) [Hz]
+  \end{itemize}
+
+  \subsection*{Schwingkreis}
+  \begin{itemize}
+    \item $f = \frac{1}{2 \pi} \sqrt{\frac{1}{L C} - \frac{R^2}{4 L^2}}$ (Frequenz) [Hz]
+    \item $T = \frac{1}{f}$ (Periodendauer) [s]
+    \item $\tau = \frac{2L}{R}$ (Abklingzeit / Zeitkonstante) [s]
+    \item Wenn $R^2 < \frac{4L}{C}$: Unterkritisch
+    \item Wenn $R^2 = \frac{4L}{C}$: Kritisch
+      \begin{itemize}
+        \item Schnellstes Abklingen ohne Überschwingen
+      \end{itemize}
+    \item Wenn $R^2 > \frac{4L}{C}$: Überkritisch
+      \begin{itemize}
+        \item Exponentielles Abklingen ohne Schwingung
+      \end{itemize}
+  \end{itemize}
+  
+  \columnbreak
+
+  \section*{Signale}
+  \subsection*{Grundlegende Begriffe}
+  \begin{itemize}
+    \item Amplitude (A): Maximaler Ausschlag eines Signals
+    \item Periodendauer (T): Zeit für eine vollständige Schwingung [s]
+    \item Frequenz (f): Anzahl der Schwingungen pro Sekunde [Hz]
+      \begin{equation*}
+        f_n = n \cdot \frac{1}{T}
+      \end{equation*}
+    \item Kreisfrequenz ($\omega$): Winkelgeschwindigkeit [rad/s]
+      \begin{equation*}
+        \omega_n = 2 \pi f_n
+      \end{equation*}
+    \item Phasenverschiebung ($\varphi$): Zeitliche Verschiebung eines Signals [rad]
+      \begin{equation*}
+        \varphi = \omega \cdot t_{Verschiebung}
+      \end{equation*}
+    \item Serieschaltung: Signale werden addiert
+    \item Parallelschaltung: Signale werden gemittelt
+  \end{itemize}
+
+  \subsection*{Wichtige Signale}
+  \begin{itemize}
+    \item Sinus: $y(t) = A \cdot \sin(\omega t + \varphi)$
+    \item Rechteck: $y(t) = \begin{cases} A & 0 \leq t < \frac{T}{2} \\ -A & \frac{T}{2} \leq t < T \end{cases}$
+    \item Dreieck: $y(t) = \begin{cases} \frac{4A}{T} t - A & 0 \leq t < \frac{T}{2} \\ -\frac{4A}{T} t + 3A & \frac{T}{2} \leq t < T \end{cases}$
+    \item Sägezahn: $y(t) = \frac{2A}{T} t - A$
+  \end{itemize}
+
+  \subsection*{Fourierzerlegung}
+  \begin{itemize}
+    \item Fourierreihe: 
+      \begin{equation*}
+        g(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos(\omega_n t) + b_n \sin(\omega_n t) \right)
+      \end{equation*}
+    \item Fourierkoeffizienten:
+      \begin{equation*}
+        a_n = \frac{2}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} g(t) \cos(\omega_n t) dt
+      \end{equation*}
+      \begin{equation*}
+        b_n = \frac{2}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} g(t) \sin(\omega_n t) dt
+      \end{equation*}
+  \end{itemize}
+
+  \columnbreak
+
+  \subsection*{Amplituden- und Phasendarstellung}
+  \begin{itemize}
+    \item Amplituden- und Phasendarstellung:
+      \begin{equation*}
+        g(t) = A_n \cdot \sin(\omega_n t + \varphi_n)
+      \end{equation*}
+    \item Zusammenhang der Darstellungen:
+      \begin{equation*}
+        A_n = \sqrt{a_n^2 + b_n^2}
+      \end{equation*}
+      \begin{equation*}
+        \varphi_n = \arctan\left(\frac{a_n}{b_n}\right) = \arcsin\left(\frac{b_n}{A_n}\right) = \arccos\left(\frac{a_n}{A_n}\right)
+      \end{equation*}
+  \end{itemize}
+
+  \subsection*{Inverse Fouriertransform}
+  \begin{equation*}
+    g(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} G(\omega) e^{j \omega t} d\omega
+  \end{equation*}
+
+  \columnbreak
+
+  \section*{Digitaltechnik}
+  \subsection*{Halbleiter}
+  \begin{itemize}
+    \item n-Halbleiter: Überschuss an Elektronen (Donatoren)
+    \item p-Halbleiter: Überschuss an Löchern (Akzeptoren)
+    \item pn-Übergang: Verbindung von p- und n-Halbleiter
+  \end{itemize}
+  \subsubsection*{Dotierung / Doping}
+  \begin{itemize}
+    \item n-Dotierung: Zugabe von Elementen der 5. Hauptgruppe (z.B. Phosphor, Arsen)
+    \item p-Dotierung: Zugabe von Elementen der 3. Hauptgruppe (z.B. Bor, Gallium)
+  \end{itemize}
+
+  \subsection*{Halbleiterbauelemente}
+  \subsubsection*{Diode}
+  \begin{itemize}
+    \item Leitet Strom in Durchlassrichtung (Anode zu Kathode)
+    \item Sperrt Strom in Sperrrichtung (Kathode zu Anode)
+    \item Kennlinie: Exponentielles Verhalten
+  \end{itemize}
+
+  \subsubsection*{Transistor (MOSFET)}
+  \begin{itemize}
+    \item Steuerung des Stromflusses zwischen Drain und Source durch Spannung am Gate
+    \item Leitet Strom, wenn Spannung am Gate über Schwellenspannung liegt
+  \end{itemize}
+
+  \subsubsection*{Logische Gatter}
+  \includegraphics[width=\columnwidth]{images/components.png}
+
+  \columnbreak
+
+  \subsubsection*{RS-Flip-Flop}
+  \includegraphics[width=0.7 \columnwidth]{images/rs-flipflop.png}
+  \begin{itemize}
+    \item Setzt Ausgang Q auf 1, wenn S=1 und R=0
+    \item Setzt Ausgang Q auf 0, wenn S=0 und R=1
+    \item Beibehaltung des Zustands, wenn S=0 und R=0
+    \item Ungültiger Zustand, wenn S=1 und R=1
+  \end{itemize}
+
+  \subsubsection*{D-Flip-Flop}
+  \begin{minipage}{0.35\linewidth}
+    \includegraphics[width=\linewidth]{images/d-flipflop.png}
+  \end{minipage} \hfill
+  \begin{minipage}{0.6\linewidth}
+    \begin{itemize}
+      \item Überträgt Eingang D auf Ausgang Q bei Taktflanke
+      \item Verhindert ungewollte Änderungen des Ausgangs
+    \end{itemize}
+  \end{minipage}
+
+  \subsubsection*{JK-Flip-Flop}
+  \begin{minipage}{0.35\linewidth}
+    \includegraphics[width=\linewidth]{images/jk-flipflop.png}
+    
+  \end{minipage} \hfill
+  \begin{minipage}{0.6\linewidth}
+    \begin{itemize}
+      \item Setzt Ausgang Q auf 1, wenn J=1 und K=0
+      \item Setzt Ausgang Q auf 0, wenn J=0 und K=1
+      \item Toggle-Zustand, wenn J=1 und K=1
+      \item Beibehaltung des Zustands, wenn J=0 und K=0
+    \end{itemize}
+  \end{minipage}
+
+  \subsection*{Parasiteneffekte}
+  \begin{itemize}
+    \item Kapazitive Kopplung: Unerwünschte elektrische Verbindung zwischen Leitungen
+    \item Induktive Kopplung: Unerwünschte magnetische Verbindung zwischen Leitungen
+    \item Übersprechen: Signalübertragung von einer Leitung auf eine andere
+    \item Signalreflexion: Rückkehr eines Signals aufgrund von Impedanzänderungen
+  \end{itemize}
+\end{multicols*}
 \end{document}

@@ -61,6 +61,7 @@
   \setlength{\columnsep}{2pt}
 
   \section*{Physikalische Grundlagen}
+  {\small
   \subsection*{Wichtige Größen}
   \begin{itemize}
       \item Spannung (U) [Volt, V] = $\frac{J}{C}$
@@ -74,9 +75,9 @@
       \item Energie = Arbeit (E = W) [Joule, J] = $N \cdot m$
       \item Frequenz (f) [Hertz, Hz] = $\frac{1}{s}$
       \item Magnetische Flussdichte (B) [Tesla, T] = $\frac{N}{A \cdot m}$
+      \item Kelvin (K): Absolute Temperatur in Celsius + 273.15
   \end{itemize}
   \subsection*{Wichtige Konstanten}
-  {\small
     \begin{itemize}
         \item Erdbeschleunigung (g) = \SI{9.81}{\frac{m}{s^2}}
         \item Lichtgeschwindigkeit (c) = \SI{3e8}{\frac{m}{s}}
@@ -84,6 +85,10 @@
         \item Magnetische Feldkonstante ($\mu_0$) = \SI{1.26e-6}{\frac{Tm}{A}}
         \item Gravitationskonstante ($\gamma$) = \SI{6.67430e-11}{\frac{m^3}{kg s^2}}
         \item Elementarladung (e) = \SI{1.602176634e-19}{C}
+        \item Plancksche Konstante (h) = \SI{6.62607015e-34}{Js}
+        \item Boltzmann-Konstante (k) = \SI{1.380649e-23}{\frac{J}{K}}
+        \item Wien'sche Verschiebungskonstante (b) = \SI{2.8977729e-3}{m K}
+        \item Stefan-Boltzmann-Konstante ($\sigma$) = \SI{5.670374419e-8}{\frac{W}{m^2 K^4}}
     \end{itemize}
   }
   \subsection*{Beschleunigung}
@@ -109,8 +114,6 @@
     \item $\vec{v}(t) = \begin{pmatrix} v_x \\ v_y \\ v_z - g \cdot t \end{pmatrix}$
     \item $\vec{s}(t) = \begin{pmatrix} s_x + v_x \cdot t \\ s_y + v_y \cdot t \\ s_z + v_z \cdot t - \frac{1}{2} g \cdot t^2 \end{pmatrix}$
   \end{itemize}
-
-  \columnbreak
 
   \subsection*{Kräfte}
   \subsubsection*{Gewichtkraft}
@@ -177,8 +180,6 @@
     \item Potential: $\varphi = \frac{\text{Potentielle Energie der Menge X}}{\text{Menge X}}$
   \end{itemize}
   
-  \columnbreak
-
   \section*{Veränderungsraten}
   \begin{itemize}
     \item $v(t) = \frac{ds(t)}{dt} = \int a(t) dt$
@@ -232,8 +233,6 @@
     P_{last} = U_0^2 \cdot \frac{R_{last}}{(R_i + R_{last})^2}
   \end{equation*}
 
-  \columnbreak
-
   \subsection*{Kondensator}
   \begin{itemize}
     \item $C = \frac{q}{U}$ (Kapazität) [F]
@@ -279,8 +278,6 @@
       \end{itemize}
   \end{itemize}
   
-  \columnbreak
-
   \section*{Signale}
   \subsection*{Grundlegende Begriffe}
   \begin{itemize}
@@ -324,8 +321,6 @@
         b_n = \frac{2}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} g(t) \sin(\omega_n t) dt
       \end{equation*}
   \end{itemize}
-
-  \columnbreak
 
   \subsection*{Amplituden- und Phasendarstellung}
   \begin{itemize}
@@ -426,7 +421,30 @@
   \columnbreak
 
   \subsection*{Sensoren}
+  \subsubsection*{aktive Sensoren}
+  \begin{itemize}
+    \item Wandeln physikalische Größen direkt in elektrische Signale um
+    \item Häufige Kalibrierung erforderlich
+    \item Beispiele: Thermoelemente, Photovoltaikzellen
+  \end{itemize}
+  \subsubsection*{passive Sensoren}
+  \begin{itemize}
+    \item Ändern ihre elektrischen Eigenschaften in Abhängigkeit von physikalischen Größen
+    \item Benötigen eine externe Spannungsquelle zur Messung
+    \item Höhere Genauigkeit und Stabilität
+    \item Beispiele: Widerstandsthermometer, Fotowiderstände
+  \end{itemize}
 
+  \subsubsection*{AD-Wandler}
+  \begin{itemize}
+    \item Wandeln analoge Signale in digitale Signale um
+    \item Wichtige Parameter:
+      \begin{itemize}
+        \item Auflösung (Bits)
+        \item Abtastrate (Samples pro Sekunde)
+        \item Eingangsspannungsbereich
+      \end{itemize}
+  \end{itemize}
   \columnbreak
   \section*{Elektrische und Magnetische Felder}
   \subsection*{Coulomb-Gesetz}
@@ -593,5 +611,194 @@
   \end{itemize}
 
   \pagebreak
+
+  \section*{Elektromagnetische Wellen}
+  \subsection*{Wellengleichung}
+  \begin{itemize}
+    \item Ausbreitungsgeschwindigkeit:
+      \begin{equation*}
+        c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}} = 3 \cdot 10^8 \quad \left[\frac{m}{s}\right]
+      \end{equation*}
+    \item Wellenlänge:
+      \begin{equation*}
+        \lambda = \frac{c}{f} \quad [m], \quad f = \frac{c}{\lambda} = \frac{1}{T} \quad [Hz]
+      \end{equation*}
+    \item Wellengleichung:
+      \begin{equation*}
+        E_z(y,t) = E_0 \cdot \sin\left(2 \pi f t - k y\right) \quad \left[\frac{V}{m}\right]
+      \end{equation*}
+      \begin{equation*}
+        B_x(y,t) = B_0 \cdot \sin\left(2 \pi f t - k y\right) \quad [T]
+      \end{equation*}
+      \begin{center}
+        $k = \frac{2 \pi}{\lambda}$: Wellenzahl [$\frac{1}{m}$] \\
+        $E_0$: elektrische Feldstärke Amplitude \(\left[\frac{V}{m}\right]\) \\
+        $B_0$: magnetische Flussdichte Amplitude [T] \\
+        $y$: Ausbreitungsrichtung [m]
+      \end{center}
+  \end{itemize}
+
+  \subsection*{Lichtbrechung}
+  \begin{itemize}
+    \item Snellius'sches Brechungsgesetz: \\
+      \begin{minipage}{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/lichtbrechung.png}
+      \end{minipage} \hfill
+      \begin{minipage}{0.55\linewidth}
+      \begin{equation*}
+        \frac{\sin(\alpha)}{\sin(\beta)} = \frac{c_1}{c_2} = \frac{n_2}{n_1}
+      \end{equation*}
+      \end{minipage}
+    \item Brechungsindex:
+      \begin{equation*}
+        n_M = \frac{c_0}{c_{Medium}}
+      \end{equation*}
+    \item Totalreflexion tritt auf, wenn der Einfallswinkel größer ist als der kritische Winkel:
+      \begin{equation*}
+        \sin(\theta_{krit}) = \frac{n_2}{n_1}
+      \end{equation*}
+  \end{itemize}
+
+  \columnbreak
+
+  \section*{Wellenphänomene}
+  \subsection*{Interferenz}
+  \begin{itemize}
+    \item Konstruktive Interferenz addiert die Amplituden
+    \item Destruktive Interferenz subtrahiert die Amplituden
+  \end{itemize}
+
+  \subsection*{Diffraction}
+  \begin{itemize}
+    \item Beugung tritt auf, wenn die Wellenlänge in der Größenordnung der Hindernisgröße liegt
+    \item Aus dem Interferenzmuster können Rückschlüsse auf die Wellenlänge gezogen werden
+  \end{itemize}
+
+  \subsection*{Dispersion}
+  \begin{itemize}
+    \item Abhängigkeit der Ausbreitungsgeschwindigkeit von der Frequenz
+    \item Ursache für die Aufspaltung von Licht in seine Spektralfarben
+  \end{itemize}
+
+  \subsection*{Intensität von Wellen}
+  \begin{itemize}
+    \item Intensität:
+      \begin{equation*}
+        I = \frac{P}{A} \quad \left[\frac{W}{m^2}\right]
+      \end{equation*}
+    \item Intensität in Abhängigkeit von der Entfernung (Kugelwelle):
+      \begin{equation*}
+        I(r) = \frac{P_{senden}}{4 \pi r^2} \quad \left[\frac{W}{m^2}\right]
+      \end{equation*}
+  \end{itemize}
+
+  \subsection*{Absorption}
+  \begin{itemize}
+    \item Lambert-Beer'sches Gesetz:
+      \begin{equation*}
+        I(x) = I_0 e^{-\alpha x} \quad \left[\frac{W}{m^2}\right]
+      \end{equation*}
+      \begin{center}
+        $\alpha$: Absorptionskoeffizient \(\left[\frac{1}{m}\right]\), \\ 
+        x: Eindringtiefe [m]
+      \end{center}
+  \end{itemize}
+
+  \subsection*{Dezibel}
+  \begin{itemize}
+    \item Pegel in Dezibel:
+      \begin{equation*}
+        Q = 10 \cdot \log_{10}\left(\frac{I}{I_0} \right) \quad [dB]
+      \end{equation*}
+      \begin{center}
+        $I_0$: Referenzintensität \(\left[ \frac{W}{m^2} \right]\)
+      \end{center}
+  \end{itemize}
+
+  \columnbreak
+
+  \section*{Thermische Strahlung}
+  \subsection*{Absorption, Emission, Reflexion}
+  \begin{itemize}
+    \item Absorptionsgrad ($\alpha$): Absorbierte Strahlung
+    \item Emissionsgrad ($\varepsilon$): Emittierte Strahlung
+    \item Reflexionsgrad ($\rho$): Reflektierte Strahlung
+    \item $\alpha + \varepsilon + \rho = 1$
+    \item Für Schwarze Körper gilt: $\alpha = \varepsilon = 1$ und $\rho = 0$
+    \item Für graue Körper gilt: $\alpha = \varepsilon < 1$ und $\rho > 0$
+      \begin{equation*}
+        S(\lambda,T) = \varepsilon(\lambda) \cdot S_{schwarz}(\lambda,T) \quad \left[\frac{W}{m^2 m sr}\right]
+      \end{equation*}
+  \end{itemize}
+
+  \subsection*{Plancksches Strahlungsgesetz}
+  Beschreibt die spektrale Strahldichte eines Schwarzen Körpers bei gegebener Temperatur.
+  \begin{equation*}
+    S(f,T) = \frac{2 h \pi f^3}{c^2} \cdot \frac{1}{e^{\frac{h f}{k_B T}} - 1} \quad \left[\frac{W}{m^2 Hz sr}\right]
+  \end{equation*}
+  \begin{equation*}
+    S(\lambda,T) = \frac{2 h \pi c^2}{\lambda^5} \cdot \frac{1}{e^{\frac{h c}{\lambda k_B T}} - 1} \quad \left[\frac{W}{m^2 m sr}\right]
+  \end{equation*}
+  \begin{center}
+    $h$: Plancksches Wirkungsquantum \(\left[ J s \right]\), \\
+    $k_B$: Boltzmann-Konstante \(\left[ \frac{J}{K} \right]\), \\
+    $c$: Lichtgeschwindigkeit \( \left[ \frac{m}{s} \right] \), \\
+    $f$: Frequenz \(\left[ Hz \right]\), \\
+    $\lambda$: Wellenlänge \(\left[ m \right]\), \\
+    $T$: absolute Temperatur \(\left[ K \right]\)
+  \end{center}
+
+  \subsection*{Wien'sches Verschiebungsgesetz}
+  Wird verwendet, um die Wellenlänge des Maximums der Strahlung eines Schwarzen Körpers bei gegebener Temperatur zu bestimmen.
+  \begin{equation*}
+    \lambda_{\max} = \frac{b}{T} \quad [m]
+  \end{equation*}
+  \begin{center}
+    $b$: Wien'sche Verschiebungskonstante \(\left[ m K \right]\), \\
+    $T$: absolute Temperatur \(\left[ K \right]\)
+  \end{center}
+
+  \subsection*{Stefan-Boltzmann-Gesetz}
+  Beschreibt die Gesamtstrahlungsleistung eines Schwarzen Körpers in Abhängigkeit von seiner Temperatur.
+  \begin{equation*}
+    P = \sigma A T^4 \quad [W]
+  \end{equation*}
+  \begin{center}
+    $\sigma$: Stefan-Boltzmann-Konstante \(\left[ \frac{W}{m^2 K^4} \right]\), \\
+    $A$: Oberfläche des Körpers \(\left[ m^2 \right]\), \\
+    $T$: absolute Temperatur \(\left[ K \right]\)
+  \end{center}
+
+  \subsection*{Thermische Strahlungsbilanz}
+  \begin{equation*}
+    I_{E,rad} = \sigma \varepsilon A (T^4 - T_{Umgebung}^4) \quad [W]
+  \end{equation*}
+  \begin{center}
+    $I_{E,rad}$: Nettostrahlungsleistung \(\left[ W \right]\), \\
+    $\varepsilon$: Emissionsgrad des Körpers, \\
+    $A$: Oberfläche des Körpers \(\left[ m^2 \right]\), \\
+    $T$: absolute Temperatur des Körpers \(\left[ K \right]\), \\
+    $T_{Umgebung}$: absolute Temperatur der Umgebung \(\left[ K \right]\)
+  \end{center}
+
+  \subsection*{Wärmeleitung}
+  \begin{equation*}
+    I_{E,cond} = A h (T_{inner} - T_{outer}) \quad [W]
+  \end{equation*}
+  \begin{center}
+    $I_{E,cond}$: Wärmeleitungsleistung \(\left[ W \right]\), \\
+    $A$: Querschnittsfläche \(\left[ m^2 \right]\), \\
+    $h$: Wärmeleitkoeffizient \(\left[ \frac{W}{m^2 K} \right]\), \\
+    $T_{inner}$: Innentemperatur \(\left[ K \right]\), \\
+    $T_{outer}$: Außentemperatur \(\left[ K \right]\)
+  \end{center}
+
+  \section*{Misc}
+
+  \includegraphics[width=\linewidth]{images/umrechnung-big-picture.png}
+
+  \columnbreak
+
+  \includegraphics[width=0.5\linewidth]{images/electromagnetism.png}
 \end{multicols*}
 \end{document}

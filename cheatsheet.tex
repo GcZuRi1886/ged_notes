@@ -73,6 +73,7 @@
       \item Ladung (q) [Coulomb, C] = $A \cdot s$
       \item Kraft (F) [Newton, N] = $kg \cdot \frac{m}{s^2}$
       \item Energie = Arbeit (E = W) [Joule, J] = $N \cdot m$
+      \item Elektronenvolt (eV) = $1.602176634 \times 10^{-19} J$
       \item Frequenz (f) [Hertz, Hz] = $\frac{1}{s}$
       \item Magnetische Flussdichte (B) [Tesla, T] = $\frac{N}{A \cdot m}$
       \item Kelvin (K): Absolute Temperatur in Celsius + 273.15
@@ -85,9 +86,10 @@
         \item Magnetische Feldkonstante ($\mu_0$) = \SI{1.26e-6}{\frac{Tm}{A}}
         \item Gravitationskonstante ($\gamma$) = \SI{6.67430e-11}{\frac{m^3}{kg s^2}}
         \item Elementarladung (e) = \SI{1.602176634e-19}{C}
+        \item Elektronenmasse (m\textsubscript{e}) = \SI{9.10938356e-31}{kg}
         \item Plancksche Konstante (h) = \SI{6.62607015e-34}{Js}
         \item Boltzmann-Konstante (k) = \SI{1.380649e-23}{\frac{J}{K}}
-        \item Wien'sche Verschiebungskonstante (b) = \SI{2.8977729e-3}{m K}
+        \item Wien'sche Verschiebungskonstante (b) = \SI{2.8977729e-3}{m \cdot K}
         \item Stefan-Boltzmann-Konstante ($\sigma$) = \SI{5.670374419e-8}{\frac{W}{m^2 K^4}}
     \end{itemize}
   }
@@ -190,6 +192,10 @@
 
   \section*{Elektrische Grundlagen}
 
+  \subsection*{Wirkungsgrad}
+  \begin{equation*}
+    \eta = \frac{P_{ab}}{P_{zu}} \quad [1]
+  \end{equation*}
   \subsection*{Ohmsches Gesetz}
   \begin{itemize}
     \item $U = U_R = R \cdot I$
@@ -214,11 +220,13 @@
     \sum U_{Quelle} = \sum U_{Verbraucher}
   \end{equation*}
   
+  {\small
   \subsection*{Reihenschaltung}
   \begin{itemize}
     \item $R_{gesamt} = R_1 + R_2 + \ldots + R_n$
     \item $I_{gesamt} = I_1 = I_2 = \ldots = I_n$
     \item $U_{gesamt} = U_1 + U_2 + \ldots + U_n$
+    \item Spannungsteiler: $U_2 = U_{gesamt} \cdot \frac{R_2}{R_1 + R_2}$
   \end{itemize}
 
   \subsection*{Parallelschaltung}
@@ -230,10 +238,10 @@
 
   \subsection*{Lastwiederstand}
   \begin{equation*}
-    P_{last} = U_0^2 \cdot \frac{R_{last}}{(R_i + R_{last})^2}
+    P_{last} = U_0^2 \cdot \frac{R_{last}}{(R_i + R_{last})^2} = I^2 \cdot R_{last}
   \end{equation*}
-
-  \subsection*{Kondensator}
+}
+  \subsection*{Kondensator / RC-Kreis}
   \begin{itemize}
     \item $C = \frac{q}{U}$ (Kapazität) [F]
     \item $E_{el} = \frac{1}{2} C U^2$
@@ -244,12 +252,17 @@
         \item Kann nicht direkt mit R addiert werden
       \end{itemize}
     \item $\tau = R \cdot C$ (Zeitkonstante) [s]
+      \begin{itemize}
+        \item 63.2\% der Endladung in $\tau$ bei Ladevorgang
+        \item 36.8\% der Anfangsladung in $\tau$ bei Entladen
+      \end{itemize}
     \item $\omega = 2 \pi f$ (Kreisfrequenz) [Hz]
     \item $f_g = \frac{1}{2 \pi \tau}$ (Grenzfrequenz) [Hz]
   \end{itemize}
 
   \subsection*{Induktivität}
   \begin{itemize}
+    \item $L = \frac{N \cdot \Phi}{I}$ (Induktivität) [H]
     \item $U_L(t) = L \frac{dI(t)}{dt} = U_0 e^{-\frac{t}{\tau}}$
     \item $E_{mag} = \frac{1}{2} L I^2$
     \item $I(t) = I_0 \left(1 - e^{-\frac{t}{\tau}} \right)$
@@ -258,15 +271,34 @@
         \item Kann nicht direkt mit R addiert werden
       \end{itemize}
     \item $\tau = \frac{L}{R}$ (Zeitkonstante) [s]
+      \begin{itemize}
+        \item Gilt analog zum Kondensator
+      \end{itemize}
     \item $\omega = 2 \pi f$ (Kreisfrequenz) [Hz]
     \item $f_g = \frac{1}{2 \pi \tau}$ (Grenzfrequenz) [Hz]
   \end{itemize}
 
-  \subsection*{Schwingkreis}
+  \subsection*{LC-Kreis}
+  \begin{itemize}
+    \item $f = \frac{1}{2 \pi \sqrt{L C}} = \frac{1}{T}$ (Frequenz) [Hz]
+    \item $T = \frac{1}{f}$ (Periodendauer) [s]
+  \end{itemize}
+
+  \subsection*{RL-Kreis}
+  \begin{itemize}
+    \item $I(t) = I_0 \left(1 - e^{-\frac{t}{\tau}} \right)$ (Anlaufstrom) [A]
+    \item $I(t) = I_0 e^{-\frac{t}{\tau}}$ (Abklingstrom) [A]
+    \item $\tau = \frac{L}{R}$ (Zeitkonstante) [s]
+  \end{itemize}
+
+  \subsection*{Schwingkreis / RLC-Kreis}
   \begin{itemize}
     \item $f = \frac{1}{2 \pi} \sqrt{\frac{1}{L C} - \frac{R^2}{4 L^2}}$ (Frequenz) [Hz]
     \item $T = \frac{1}{f}$ (Periodendauer) [s]
     \item $\tau = \frac{2L}{R}$ (Abklingzeit / Zeitkonstante) [s]
+      \begin{itemize}
+        \item Zeit bis zur Amplitudenabsenkung auf $\frac{1}{e}$ des Anfangswertes (ca. 36.8\%)
+      \end{itemize}
     \item Wenn $R^2 < \frac{4L}{C}$: Unterkritisch
     \item Wenn $R^2 = \frac{4L}{C}$: Kritisch
       \begin{itemize}
@@ -277,7 +309,13 @@
         \item Exponentielles Abklingen ohne Schwingung
       \end{itemize}
   \end{itemize}
-  
+
+  \subsection*{Tief- und Hochpass}
+  \begin{itemize}
+    \item Tiefpass: $U_{out} = U_{in} \cdot \frac{1}{\sqrt{1 + (\omega R C)^2}}$
+    \item Hochpass: $U_{out} = U_{in} \cdot \frac{\omega R C}{\sqrt{1 + (\omega R C)^2}}$
+    \item Grenzfrequenz: $f_g = \frac{1}{2 \pi R C}$
+  \end{itemize}
   \section*{Signale}
   \subsection*{Grundlegende Begriffe}
   \begin{itemize}
@@ -342,8 +380,6 @@
     g(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} G(\omega) e^{j \omega t} d\omega
   \end{equation*}
 
-  \columnbreak
-
   \section*{Digitaltechnik}
   \subsection*{Halbleiter}
   \begin{itemize}
@@ -371,10 +407,14 @@
     \item Leitet Strom, wenn Spannung am Gate über Schwellenspannung liegt
   \end{itemize}
 
+  \subsection*{Open Drain}
+  \begin{itemize}
+    \item Ausgang ist nur mit Drain verbunden
+    \item Benötigt externen Pull-Up-Widerstand (Spannungsteilungsformel)
+    \item Ermöglicht mehrere Ausgänge, die einen Bus teilen
+  \end{itemize}
   \subsubsection*{Logische Gatter}
   \includegraphics[width=\columnwidth]{images/components.png}
-
-  \columnbreak
 
   \subsubsection*{RS-Flip-Flop}
   \includegraphics[width=0.7 \columnwidth]{images/rs-flipflop.png}
@@ -418,8 +458,7 @@
     \item Signalreflexion: Rückkehr eines Signals aufgrund von Impedanzänderungen
   \end{itemize}
 
-  \columnbreak
-
+  {\small
   \subsection*{Sensoren}
   \subsubsection*{aktive Sensoren}
   \begin{itemize}
@@ -445,7 +484,7 @@
         \item Eingangsspannungsbereich
       \end{itemize}
   \end{itemize}
-  \columnbreak
+   }
   \section*{Elektrische und Magnetische Felder}
   \subsection*{Coulomb-Gesetz}
   Siehe Kraft zwischen Ladungen Seite 1.
@@ -469,13 +508,25 @@
   \end{itemize}
   \subsection*{Magnetisches Feld}
   \begin{itemize}
+    \item Magnetische Kraft:
+      \begin{equation*}
+        \vec{F}_{mag} = I \cdot \vec{l} \times \vec{B} = I \cdot |\vec{l}| \cdot |\vec{B}| \cdot \sin(\theta) \quad [N]
+      \end{equation*}
+      \begin{center}
+        l: Leiterlänge im Magnetfeld [m] \\
+        $\theta$: Winkel zwischen Leiter und Magnetfeld
+      \end{center}
+    \item Lorentzkraft:
+      \begin{itemize}
+        \item Kraft auf eine bewegte Ladung im Magnetfeld:
+        \item Entspricht der Zentripetalkraft bei Kreisbewegung im Magnetfeld
+      \end{itemize}
+      \begin{equation*}
+        \vec{F_L} = q \cdot \vec{v} \times \vec{B} = \frac{m v^2}{r} \quad [N]
+      \end{equation*}
     \item Magnetische Flussdichte:
       \begin{equation*}
-        \vec{B} = \frac{\vec{F}}{q \cdot \vec{v}} \quad [T]
-      \end{equation*}
-    \item Lorentzkraft:
-      \begin{equation*}
-        \vec{F_L} = q \cdot \vec{v} \times \vec{B}
+        \vec{B} = \frac{\vec{F}_{mag}}{q \cdot \vec{v} \sin(\theta)} \quad [T]
       \end{equation*}
     \item Wenn $\vec{v} \perp \vec{B}$ gilt:
       \begin{equation*}
@@ -500,8 +551,6 @@
       \end{equation*}
   \end{itemize}
 
-  \columnbreak
-
   \section*{Elektrodynamik}
   \subsection*{Der Fluss}
   \begin{itemize}
@@ -509,7 +558,7 @@
       \begin{equation*}
         \Phi_E = \frac{q}{\varepsilon_0} \quad \left[\frac{N m^2}{C}\right]
       \end{equation*}
-    \item Wenn $\vec{E}$ homogen und senkrecht zur Kugeöberfläche ist
+    \item Wenn $\vec{E}$ homogen und senkrecht zur Kugeloberfläche ist
       \begin{equation*}
         \Phi_E = 4 \pi r^2 \cdot |\vec{E}| = \frac{q}{\varepsilon_0}
       \end{equation*}
@@ -519,6 +568,9 @@
       \begin{equation*}
         \vec{E} = \frac{q}{4 \pi \varepsilon_0 r^2} \cdot \frac{\vec{r}}{|\vec{r}|}
       \end{equation*}
+      \begin{center}
+        r: Abstand von der Ladung [m]
+      \end{center}
   \end{itemize}
 
   \subsection*{Integration entlang von Linien}
@@ -556,6 +608,9 @@
       \begin{equation*}
         U_{ind} = -\frac{d\Phi}{dt} \quad [V]
       \end{equation*}
+      \begin{equation*}
+        \Phi = \int \vec{B} \cdot d\vec{A} = A \cdot B \cdot \cos(\theta) \quad [Wb]
+      \end{equation*}
     \item Magnetischer Fluss im Dynamo:
       \begin{equation*}
         \Phi = A_1 \cdot E = A_2 \cdot E \cdot \cos(\theta)
@@ -585,6 +640,18 @@
       \begin{equation*}
         l_{Ant} = \frac{c}{f} \quad [m]
       \end{equation*}
+    \item Dipolantenne:
+      \begin{itemize}
+        \item $l_{Ant} = \frac{\lambda}{2}$
+        \item Orientierung der Antenne senkrecht zur Ausbreitungsrichtung
+      \end{itemize}
+    \item Sendeleistung:
+      \begin{equation*}
+        P_{senden} = \frac{U_{eff}^2}{R_{ant}} \quad [W]
+      \end{equation*}
+      \begin{center}
+        $R_{ant}$: Antennenwiderstand [$\Omega$]
+      \end{center}
     \item Empfangene Leistung:
       \begin{equation*}
         P_{empfangen} = P_{senden} \cdot \left( \frac{l_{Ant}}{4 \pi r} \right)^2 \quad [W]
@@ -610,7 +677,17 @@
       \end{equation*}
   \end{itemize}
 
-  \pagebreak
+  \section*{Glasfaser}
+  \begin{itemize}
+    \item Ausbreitungsgeschwindigkeit im Medium:
+      \begin{equation*}
+        c_{Medium} = \frac{c_0}{n_M} \quad \left[\frac{m}{s}\right]
+      \end{equation*}
+    \item Wellenlänge im Medium:
+      \begin{equation*}
+        \lambda_{Medium} = \frac{\lambda_0}{n_M} \quad [m]
+      \end{equation*}
+  \end{itemize}
 
   \section*{Elektromagnetische Wellen}
   \subsection*{Wellengleichung}
@@ -638,7 +715,7 @@
       \end{center}
   \end{itemize}
 
-  \subsection*{Lichtbrechung}
+  \section*{Lichtbrechung}
   \begin{itemize}
     \item Snellius'sches Brechungsgesetz: \\
       \begin{minipage}{0.4\linewidth}
@@ -659,8 +736,6 @@
       \end{equation*}
   \end{itemize}
 
-  \columnbreak
-
   \section*{Wellenphänomene}
   \subsection*{Interferenz}
   \begin{itemize}
@@ -678,6 +753,14 @@
   \begin{itemize}
     \item Abhängigkeit der Ausbreitungsgeschwindigkeit von der Frequenz
     \item Ursache für die Aufspaltung von Licht in seine Spektralfarben
+  \end{itemize}
+
+  \subsection*{Signal to Noise Ratio}
+  \begin{itemize}
+    \item Verhältnis von Nutzsignal zu Störsignal:
+      \begin{equation*}
+        SNR = \frac{P_{Signal}}{P_{Rauschen}} \quad [\text{Einheitlos}]
+      \end{equation*}
   \end{itemize}
 
   \subsection*{Intensität von Wellen}
@@ -700,7 +783,8 @@
       \end{equation*}
       \begin{center}
         $\alpha$: Absorptionskoeffizient \(\left[\frac{1}{m}\right]\), \\ 
-        x: Eindringtiefe [m]
+        x: Eindringtiefe [m] \\
+        Umrechnung aus dB: $\alpha \approx \frac{\alpha_{dB}}{4.343}$
       \end{center}
   \end{itemize}
 
@@ -715,7 +799,39 @@
       \end{center}
   \end{itemize}
 
-  \columnbreak
+  \section*{Wechselspannung}
+  \subsection*{Grundgrößen}
+  \begin{itemize}
+    \item Effektivwert:
+      \begin{equation*}
+        U_{eff} = \frac{U_{\max}}{\sqrt{2}} \quad [V]
+      \end{equation*}
+    \item Kreisfrequenz:
+      \begin{equation*}
+        \omega = 2 \pi f \quad \left[\frac{rad}{s}\right]
+      \end{equation*}
+    \item Phasenwinkel:
+      \begin{equation*}
+        \varphi = \omega \cdot t_{Verschiebung} \quad [rad]
+      \end{equation*}
+    \item Zeitfunktion der Spannung:
+      \begin{equation*}
+        U(t) = U_{\max} \cdot \sin(\omega t + \varphi) \quad [V]
+      \end{equation*}
+    \item Scheinleistung:
+      \begin{equation*}
+        S = U_{eff} \cdot I_{eff} \quad [W]
+      \end{equation*}
+    \item Wirkleistung:
+      \begin{equation*}
+        P = U_{eff} \cdot I_{eff} \cdot \cos(\varphi) \quad [W]
+      \end{equation*}
+    \item Blindleistung:
+      \begin{equation*}
+        Q = U_{eff} \cdot I_{eff} \cdot \sin(\varphi) \quad [VAR]
+      \end{equation*}
+  \end{itemize}
+
 
   \section*{Thermische Strahlung}
   \subsection*{Absorption, Emission, Reflexion}
@@ -754,7 +870,7 @@
     \lambda_{\max} = \frac{b}{T} \quad [m]
   \end{equation*}
   \begin{center}
-    $b$: Wien'sche Verschiebungskonstante \(\left[ m K \right]\), \\
+    $b$: Wien'sche Verschiebungskonstante \(\left[ m \cdot K \right]\), \\
     $T$: absolute Temperatur \(\left[ K \right]\)
   \end{center}
 
@@ -793,12 +909,34 @@
     $T_{outer}$: Außentemperatur \(\left[ K \right]\)
   \end{center}
 
-  \section*{Misc}
+  \section*{Maxwellsche Gleichungen}
+  \begin{itemize}
+    \item Gaußsches Gesetz für die Elektrizität:
+      \begin{equation*}
+        \oint \vec{E} \cdot d\vec{A} = \frac{Q_{innen}}{\varepsilon_0}
+      \end{equation*}
+    \item Gaußsches Gesetz für den Magnetismus:
+      \begin{equation*}
+        \oint \vec{B} \cdot d\vec{A} = 0
+      \end{equation*}
+    \item Faradaysches Induktionsgesetz:
+      \begin{equation*}
+        \oint \vec{E} \cdot d\vec{s} = -\frac{d\Phi_B}{dt}
+      \end{equation*}
+    \item Ampèresches Gesetz (mit Maxwellscher Erweiterung):
+      \begin{equation*}
+        \oint \vec{B} \cdot d\vec{s} = \mu_0 \left( I_{durch} + \varepsilon_0 \frac{d\Phi_E}{dt} \right)
+      \end{equation*}
+  \end{itemize}
+
+  \section*{Sonstiges}
 
   \includegraphics[width=\linewidth]{images/umrechnung-big-picture.png}
 
-  \columnbreak
-
   \includegraphics[width=0.5\linewidth]{images/electromagnetism.png}
+
+  \includegraphics[width=0.7\linewidth]{images/right-hand-rule.png}
+
+  \includegraphics[width=\linewidth]{images/schaltzeichen-uebersicht.png}
 \end{multicols*}
 \end{document}

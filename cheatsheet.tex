@@ -256,6 +256,7 @@
         \item 63.2\% der Endladung in $\tau$ bei Ladevorgang
         \item 36.8\% der Anfangsladung in $\tau$ bei Entladen
       \end{itemize}
+    \item $t_r = 2.2 \cdot \tau$ (Lade-/Entladezeit ca. 90\% - 10\%) [s]
     \item $\omega = 2 \pi f$ (Kreisfrequenz) [Hz]
     \item $f_g = \frac{1}{2 \pi \tau}$ (Grenzfrequenz) [Hz]
   \end{itemize}
@@ -298,6 +299,7 @@
     \item $\tau = \frac{2L}{R}$ (Abklingzeit / Zeitkonstante) [s]
       \begin{itemize}
         \item Zeit bis zur Amplitudenabsenkung auf $\frac{1}{e}$ des Anfangswertes (ca. 36.8\%)
+        \item $U(t) = U_0 \cdot e^{-\frac{t}{\tau}}$
       \end{itemize}
     \item Wenn $R^2 < \frac{4L}{C}$: Unterkritisch
     \item Wenn $R^2 = \frac{4L}{C}$: Kritisch
@@ -497,6 +499,13 @@
       \begin{equation*}
         \vec{E} = \frac{\vec{F}}{q} = \frac{1}{4 \pi \varepsilon_0} \frac{q}{|\vec{r} - \vec{r}_q|^2} \frac{\vec{r} - \vec{r}_q}{|\vec{r} - \vec{r}_q|} \quad \left[\frac{N}{C}\right] = \left[\frac{V}{m}\right]
       \end{equation*}
+      \begin{equation*}
+        \vec{E}_{gesamt} = \sum_i \vec{E}_i
+      \end{equation*}
+    \item Arbeit im elektrischen Feld:
+      \begin{equation*}
+        W_{AB} = \int_A^B \vec{F} \cdot d\vec{s} = q \int_A^B \vec{E} \cdot d\vec{s} \quad [J]
+      \end{equation*}
     \item Elektrisches Potential:
       \begin{equation*}
         \varphi = \frac{E_{pot}}{q} \quad [V]
@@ -535,11 +544,19 @@
     \item Strom ist immer senkrecht zum Magnetfeld
   \end{itemize}
 
+  {\small
   \subsection*{Elektromagnetische Kraft und Feldenergie}
   \begin{itemize}
     \item Kraft auf eine Ladung im elektromagnetischen Feld:
       \begin{equation*}
       \vec{F}_{elmag} = q(\vec{E}(\vec{r}) + \vec{v} \times \vec{B}(\vec{r})) \quad [N]
+      \end{equation*}
+    \item Geschwindigkeit eines geladenen Teilchens im elektromagnetischen Feld:
+      \begin{equation*}
+        \vec{v}(t) = \frac{q \vec{E}}{m} t + \vec{v}_0 \quad [\frac{m}{s}]
+      \end{equation*}
+      \begin{equation*}
+        v = \sqrt{\frac{2 q U}{m}} \quad [\frac{m}{s}]
       \end{equation*}
     \item Energiedichte des elektromagnetischen Feldes:
       \begin{equation*}
@@ -550,7 +567,7 @@
         \varepsilon = \int_V w \, dV \quad [J]
       \end{equation*}
   \end{itemize}
-
+    }
   \section*{Elektrodynamik}
   \subsection*{Der Fluss}
   \begin{itemize}
@@ -638,7 +655,7 @@
   \begin{itemize}
     \item Antennenlänge für eine Frequenz:
       \begin{equation*}
-        l_{Ant} = \frac{c}{f} \quad [m]
+        l_{Ant} = \frac{c}{f} = \lambda \quad [m]
       \end{equation*}
     \item Dipolantenne:
       \begin{itemize}
@@ -767,7 +784,7 @@
   \begin{itemize}
     \item Intensität:
       \begin{equation*}
-        I = \frac{P}{A} \quad \left[\frac{W}{m^2}\right]
+        I = \frac{P}{A} = \frac{1}{2} \varepsilon_0 c E_0^2 \quad \left[\frac{W}{m^2}\right]
       \end{equation*}
     \item Intensität in Abhängigkeit von der Entfernung (Kugelwelle):
       \begin{equation*}
@@ -836,7 +853,7 @@
   \section*{Thermische Strahlung}
   \subsection*{Absorption, Emission, Reflexion}
   \begin{itemize}
-    \item Absorptionsgrad ($\alpha$): Absorbierte Strahlung
+    \item Absorptionsgrad ($\alpha \neq$ Absorptionskoeffizient): Absorbierte Strahlung
     \item Emissionsgrad ($\varepsilon$): Emittierte Strahlung
     \item Reflexionsgrad ($\rho$): Reflektierte Strahlung
     \item $\alpha + \varepsilon + \rho = 1$
@@ -844,6 +861,10 @@
     \item Für graue Körper gilt: $\alpha = \varepsilon < 1$ und $\rho > 0$
       \begin{equation*}
         S(\lambda,T) = \varepsilon(\lambda) \cdot S_{schwarz}(\lambda,T) \quad \left[\frac{W}{m^2 m sr}\right]
+      \end{equation*}
+    \item Absorbierte Energie ($I$: Einstrahlungsstärke):
+      \begin{equation*}
+        P_{absorbiert} = \alpha \cdot I \cdot A \quad [W]
       \end{equation*}
   \end{itemize}
 
@@ -938,5 +959,12 @@
   \includegraphics[width=0.7\linewidth]{images/right-hand-rule.png}
 
   \includegraphics[width=\linewidth]{images/schaltzeichen-uebersicht.png}
+
+  \begin{center}
+    \includegraphics[width=\linewidth]{images/color-temp.png} \\
+    \textit{Temperatur [K] und Farbtemperatur}
+  \end{center}
+
+  \includegraphics[width=\linewidth]{images/em-spectrum.png}
 \end{multicols*}
 \end{document}
